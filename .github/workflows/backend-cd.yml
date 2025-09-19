@@ -34,6 +34,9 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           enable-AzPSSession: true
+        
+      - name: Login to Azure Container Registry
+        run: az acr login --name ${{ github.event.inputs.aks_acr_name }}
 
       - name: Set Kubernetes context (get AKS credentials)
         run: |
